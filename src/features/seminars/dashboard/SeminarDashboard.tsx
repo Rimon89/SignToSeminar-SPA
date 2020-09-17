@@ -9,17 +9,19 @@ interface IProps {
     seminars: ISeminar[];
     selectSeminar: (id:string) => void;
     selectedSeminar: ISeminar | null;
+    attendMode: boolean;
+    setAttendMode: (attendMode: boolean) => void
 }
 
-const SeminarDashboard: React.FC<IProps> = ({seminars, selectSeminar, selectedSeminar}) => {
+const SeminarDashboard: React.FC<IProps> = ({seminars, selectSeminar, selectedSeminar, attendMode, setAttendMode}) => {
     return (
         <Grid>
             <Grid.Column width={10}>
                 <SeminarList seminars={seminars} selectSeminar={selectSeminar} />
             </Grid.Column>
             <Grid.Column width={6}>
-                {selectedSeminar && <SeminarDetail seminar={selectedSeminar} />} {/** what is to the right of && will only be executed if it's not equal to null*/}
-                <SeminarForm/>
+                {selectedSeminar && <SeminarDetail seminar={selectedSeminar} setAttendMode={setAttendMode} />} {/** what is to the right of && will only be executed if it's not equal to null*/}
+                {attendMode && <SeminarForm setAttendMode={setAttendMode} />}
             </Grid.Column>
         </Grid>
     )

@@ -10,9 +10,9 @@ const navBar = () => {
                 Joy Education
             </Menu.Item>
                 <Menu.Item name='Seminars' />
-                <Menu.Item>
+               {/*<Menu.Item>
                     <Button positive content="Create seminar" />
-                </Menu.Item>
+               </Menu.Item>*/}
             </Container>
         </Menu>
     )

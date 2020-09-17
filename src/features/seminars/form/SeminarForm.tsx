@@ -1,16 +1,23 @@
 import React from 'react'
-import { Form, Segment } from 'semantic-ui-react'
+import { Button, Form, Segment } from 'semantic-ui-react'
 
-const SeminarForm = () => {
+interface IProps {
+    setAttendMode: (attendMode: boolean) => void;
+}
+
+const SeminarForm:React.FC<IProps> = ({setAttendMode}) => {
     return (
-        <Segment>
+        <Segment clearing>
             <Form>
-                <Form.Input placeholder='Title'/>
-                <Form.TextArea placeholder='Description'/>
+                <Form.Input placeholder='Firstname'/>
+                <Form.Input placeholder='Lastname'/>
                 <Form.Input placeholder='Category'/>
-                <Form.Input type='date' placeholder='Date'/>
+                <Form.Input type='email' placeholder='email'/>
                 <Form.Input placeholder='City'/>
                 <Form.Input placeholder='Address'/>
+                <Form.Input placeholder='Seminar' />
+                <Button floated='right' positive type='submit' content='Submit' />
+                <Button onClick={() => setAttendMode(false)} floated='right' type='button' content='Cancel' />
             </Form>
         </Segment>
     )

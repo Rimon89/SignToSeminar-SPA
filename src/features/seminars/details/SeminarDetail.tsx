@@ -4,9 +4,10 @@ import { ISeminar } from '../../../app/models/seminar'
 
 interface IProps {
   seminar: ISeminar;
+  setAttendMode: (attendMode: boolean) => void;
 }
 
-const SeminarDetail: React.FC<IProps> = ({ seminar }) => {
+const SeminarDetail: React.FC<IProps> = ({ seminar, setAttendMode }) => {
   return (
     <Card fluid> {/**fluid: so it takes up all the space of our 6 column grid*/}
       <Image src={`/assets/categoryImages/${seminar.category.toLowerCase()}.jpg`} wrapped ui={false} />
@@ -20,9 +21,8 @@ const SeminarDetail: React.FC<IProps> = ({ seminar }) => {
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
-        <ButtonGroup widths={2}>
-          <Button basic color="blue" content="Attend" />
-          <Button basic color="grey" content="Cancel" />
+        <ButtonGroup fluid>
+          <Button onClick={() => setAttendMode(true)} basic color="blue" content="Attend" />
         </ButtonGroup>
       </Card.Content>
     </Card>
