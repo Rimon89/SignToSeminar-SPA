@@ -6,7 +6,7 @@ const navBar = () => {
         <Menu fixed='top' inverted>
             <Container>
                 <Menu.Item>
-                    <img src="/assets/logo.jpg" alt="logo" style={{marginRight: '10px'}} />
+                    {/**<img src="/assets/logo.png" alt="logo" style={{marginRight: '10px'}} />*/}
                 Joy Education
             </Menu.Item>
                 <Menu.Item name='Seminars' />

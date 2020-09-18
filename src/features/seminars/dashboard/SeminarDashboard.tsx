@@ -21,7 +21,7 @@ const SeminarDashboard: React.FC<IProps> = ({seminars, selectSeminar, selectedSe
             </Grid.Column>
             <Grid.Column width={6}>
                 {selectedSeminar && <SeminarDetail seminar={selectedSeminar} setAttendMode={setAttendMode} />} {/** what is to the right of && will only be executed if it's not equal to null*/}
-                {attendMode && <SeminarForm setAttendMode={setAttendMode} />}
+                {attendMode && <SeminarForm setAttendMode={setAttendMode} seminar={selectedSeminar!} />}
             </Grid.Column>
         </Grid>
     )
