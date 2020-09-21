@@ -1,9 +1,5 @@
 body {
-  background-color: ghostwhite !important;
+  background-color: rgb(234, 234, 234) !important;
 }
 
-.ui.inverted.top.fixed.menu {
-background-color: blue;
- 
-}
 

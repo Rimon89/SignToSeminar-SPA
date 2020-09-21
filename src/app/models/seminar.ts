@@ -6,4 +6,5 @@ export interface ISeminar {
     address: string;
     city: string;
     date: Date;
+    availableSeats: number;
 }

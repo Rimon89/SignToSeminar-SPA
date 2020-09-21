@@ -1,34 +1,34 @@
 import React from 'react'
-import { Button, Item, Label, Segment } from 'semantic-ui-react'
 import { ISeminar } from '../../../app/models/seminar'
+import { Card, Button } from 'react-bootstrap';
 
 interface IProps {
     seminars: ISeminar[];
-    selectSeminar: (id:string) => void;
+    selectSeminar: (id: string) => void;
 }
 
 const SeminarList: React.FC<IProps> = ({ seminars, selectSeminar }) => {
     return (
-        <Segment clearing>  {/** clears any floated contents */}
-            <Item.Group divided> {/** adds divider between each items */}
-                {seminars.map(seminar => (
-                    <Item key={seminar.id} >
-                        <Item.Content>
-                            <Item.Header as='a'>{seminar.name}</Item.Header>
-                            <Item.Meta>{seminar.date}</Item.Meta>
-                            <Item.Description>
-                                <div>{seminar.description}</div>
-                                <div><br/>{seminar.city}, {seminar.address}</div>
-                            </Item.Description>
-                            <Item.Extra>
-                                <Button onClick={() => selectSeminar(seminar.id)} floated='right' content='View' color='blue' />
-                                <Label basic content={seminar.category} />
-                            </Item.Extra>
-                        </Item.Content>
-                    </Item>
-                ))}
-            </Item.Group>
-        </Segment>
+        <div>
+            {seminars.map(seminar => (
+                <Card key={seminar.id}>
+                    <Card.Header>{seminar.category}</Card.Header>
+                    <Card.Body>
+                        <Card.Title>{seminar.name}</Card.Title>
+                        <Card.Text>
+                            {seminar.description}
+                        </Card.Text>
+                        <Card.Text>
+                            {seminar.city}, {seminar.address}
+                        </Card.Text>
+                        <Card.Text>
+                            Available seats: {seminar.availableSeats}
+                        </Card.Text>
+                        <Button onClick={() => selectSeminar(seminar.id)} variant="primary">Read More</Button>
+                    </Card.Body>
+                </Card>
+            ))}
+        </div>
     )
 }
 

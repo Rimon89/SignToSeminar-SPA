@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ISeminar } from '../models/seminar';
 import NavBar from '../../features/nav/NavBar';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import 'semantic-ui-css/semantic.min.css'
 import { Container } from 'semantic-ui-react';
 import SeminarDashboard from '../../features/seminars/dashboard/SeminarDashboard';

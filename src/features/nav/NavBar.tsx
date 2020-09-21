@@ -1,20 +1,16 @@
 import React from 'react'
-import { Button, Container, Menu } from 'semantic-ui-react'
+import { Navbar, Nav } from 'react-bootstrap';
 
 const navBar = () => {
     return (
-        <Menu fixed='top' inverted>
-            <Container>
-                <Menu.Item>
-                    {/**<img src="/assets/logo.png" alt="logo" style={{marginRight: '10px'}} />*/}
-                Joy Education
-            </Menu.Item>
-                <Menu.Item name='Seminars' />
-               {/*<Menu.Item>
-                    <Button positive content="Create seminar" />
-               </Menu.Item>*/}
-            </Container>
-        </Menu>
+        <Navbar bg="primary" variant="dark" fixed="top">
+        <Navbar.Brand href="#home">JoyEducation</Navbar.Brand>
+        <Nav className="mr-auto">
+          <Nav.Link href="#home">Home</Nav.Link>
+          <Nav.Link href="#seminars">Seminars</Nav.Link>
+          <Nav.Link href="#contact">Contact</Nav.Link>
+        </Nav>
+      </Navbar>
     )
 }
 

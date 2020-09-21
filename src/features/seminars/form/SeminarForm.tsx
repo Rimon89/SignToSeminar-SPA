@@ -18,7 +18,7 @@ const SeminarForm:React.FC<IProps> = ({setAttendMode, seminar}) => {
                 <Form.Input placeholder='Address'/>
                 <Form.Input value={seminar.name} />
                 <Form.Input value={seminar.id} type='hidden' />
-                <Button floated='right' positive type='submit' content='Submit' />
+                <Button floated='right' type='submit' color='blue' content='Submit' />
                 <Button onClick={() => setAttendMode(false)} floated='right' type='button' content='Cancel' />
             </Form>
         </Segment>
