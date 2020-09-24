@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useState } from 'react'
 import { Button, Form, Segment } from 'semantic-ui-react'
+import agent from '../../../app/api/agent'
 import { ISeminar } from '../../../app/models/seminar'
 import { IUser } from '../../../app/models/user'
 
@@ -23,7 +24,14 @@ const SeminarForm:React.FC<IProps> = ({setAttendMode, seminar}) => {
     }
 
     const handleSubmit = () => {
-        console.log(user);
+        let newUser = {
+            ...user,
+            seminarId: seminar.id
+          };
+        agent.Users.create(newUser);
+
+        console.log(newUser);
+        setAttendMode(false);
     }
 
     const [user, setUser] = useState<IUser>(initializeForm);
@@ -42,7 +50,6 @@ const SeminarForm:React.FC<IProps> = ({setAttendMode, seminar}) => {
                 <Form.Input onChange={handleInput} name='phoneNumber' placeholder='Phonenumber' value={user.phoneNumber} />
                 <Form.Input onChange={handleInput} name='city' placeholder='City' value={user.city} />
                 <Form.Input onChange={handleInput} name='address' placeholder='Address' value={user.address} />
-                <Form.Input value={seminar.id} type='hidden' />
                 <Button floated='right' type='submit' color='blue' content='Submit' />
                 <Button onClick={() => setAttendMode(false)} floated='right' type='button' content='Cancel' />
             </Form>
