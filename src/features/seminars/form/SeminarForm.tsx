@@ -30,7 +30,6 @@ const SeminarForm:React.FC<IProps> = ({setAttendMode, seminar}) => {
           };
         agent.Users.create(newUser);
 
-        console.log(newUser);
         setAttendMode(false);
     }
 

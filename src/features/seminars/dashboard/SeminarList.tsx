@@ -19,7 +19,7 @@ const SeminarList: React.FC<IProps> = ({ seminars, selectSeminar }) => {
                             {seminar.description}
                         </Card.Text>
                         <Card.Text>
-                            {seminar.city}, {seminar.address}
+                            {seminar.city}, {seminar.address}.
                         </Card.Text>
                         <Card.Text>
                             Available seats: {seminar.availableSeats}
