@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { url } from 'inspector';
+import { ISeminar } from '../models/seminar';
 import { IUser } from '../models/user';
 
 axios.defaults.baseURL = 'https://localhost:5001/api';
@@ -14,7 +14,7 @@ const requests = {
 }
 
 const Seminars = {
-    list: () => requests.get('/seminars')
+    list: (): Promise<ISeminar[]> => requests.get('/seminars')
 }
 
 const Users = {

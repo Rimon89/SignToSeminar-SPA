@@ -1,6 +1,7 @@
 import React from 'react'
 import { ISeminar } from '../../../app/models/seminar'
 import { Card, Button } from 'react-bootstrap';
+import moment from 'moment';
 
 interface IProps {
     seminars: ISeminar[];
@@ -17,6 +18,9 @@ const SeminarList: React.FC<IProps> = ({ seminars, selectSeminar }) => {
                         <Card.Title>{seminar.name}</Card.Title>
                         <Card.Text>
                             {seminar.description}
+                        </Card.Text>
+                        <Card.Text>
+                           Date: {moment(seminar.dateTime).format('LLLL') }
                         </Card.Text>
                         <Card.Text>
                             {seminar.city}, {seminar.address}.

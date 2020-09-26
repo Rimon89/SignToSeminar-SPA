@@ -28,9 +28,9 @@ const SeminarForm:React.FC<IProps> = ({setAttendMode, seminar}) => {
             ...user,
             seminarId: seminar.id
           };
-        agent.Users.create(newUser);
-
-        setAttendMode(false);
+        agent.Users.create(newUser).then(() => {
+            setAttendMode(false);
+        });
     }
 
     const [user, setUser] = useState<IUser>(initializeForm);

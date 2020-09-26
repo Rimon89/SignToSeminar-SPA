@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { ISeminar } from '../models/seminar';
 import NavBar from '../../features/nav/NavBar';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'semantic-ui-css/semantic.min.css'
 import { Container } from 'semantic-ui-react';
 import SeminarDashboard from '../../features/seminars/dashboard/SeminarDashboard';
+import agent from '../api/agent';
 
 const App = () => {
   const [seminars, setSeminars] = useState<ISeminar[]>([])   //We define a constant and pass in an array with two elements. "activities = the state". "setActivities = a function to set the state". "useState = we give this a intial state wich is an empty array"
@@ -17,9 +17,9 @@ const App = () => {
   }
 
   useEffect(() => {
-    axios.get<ISeminar[]>('https://localhost:5001/api/seminars')
+    agent.Seminars.list()
       .then((response) => {
-        setSeminars(response.data)
+        setSeminars(response)
       });
   }, []);   //[] = So useEffect doesnt get in to a loop.
 
