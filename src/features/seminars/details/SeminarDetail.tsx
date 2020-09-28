@@ -5,7 +5,7 @@ import SeminarStore from '../../../app/stores/seminarStore';
 
 const SeminarDetail: React.FC = () => {
   const seminarStore = useContext(SeminarStore);
-  const {selectedSeminar: seminar} = seminarStore;
+  const {selectedSeminar: seminar, openUserForm} = seminarStore;
   return (
     <Card>
       <Card.Img variant="top" src={`/assets/categoryImages/${seminar!.category.toLowerCase()}.jpg`} />
@@ -14,7 +14,7 @@ const SeminarDetail: React.FC = () => {
         <Card.Text>
           {seminar!.description}
         </Card.Text>
-        <Button onClick={seminarStore.openUserForm} variant="outline-primary" block>
+        <Button onClick={openUserForm} variant="outline-primary" block>
           Attend seminar
         </Button>
       </Card.Body>

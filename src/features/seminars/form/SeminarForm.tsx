@@ -6,7 +6,7 @@ import SeminarStore from '../../../app/stores/seminarStore';
 const SeminarForm:React.FC = () => {
 
     const seminarStore = useContext(SeminarStore);
-    const {selectedSeminar} = seminarStore;
+    const {selectedSeminar, closeUserForm} = seminarStore;
 
     const initializeForm = () => {
         return {
@@ -45,7 +45,7 @@ const SeminarForm:React.FC = () => {
                 <Form.Input onChange={handleInput} name='city' placeholder='City' value={user.city} />
                 <Form.Input onChange={handleInput} name='address' placeholder='Address' value={user.address} />
                 <Button floated='right' type='submit' color='blue' content='Submit' />
-                <Button onClick={seminarStore.closeUserForm} floated='right' type='button' content='Cancel' />
+                <Button onClick={closeUserForm} floated='right' type='button' content='Cancel' />
             </Form>
         </Segment>
     )
