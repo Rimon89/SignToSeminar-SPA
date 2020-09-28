@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import { ISeminar } from '../../../app/models/seminar'
 import SeminarDetail from '../details/SeminarDetail'
 import SeminarForm from '../form/SeminarForm'
 import SeminarList from './SeminarList'
@@ -7,13 +6,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { observer } from 'mobx-react-lite'
 import SeminarStore from '../../../app/stores/seminarStore';
 
-interface IProps {
-    seminars: ISeminar[];
-    selectSeminar: (id: string) => void;
-    setAttendMode: (attendMode: boolean) => void
-}
-
-const SeminarDashboard: React.FC<IProps> = ({ seminars, selectSeminar, setAttendMode }) => {
+const SeminarDashboard: React.FC = () => {
     const seminarStore = useContext(SeminarStore);
     const {attendMode, selectedSeminar} = seminarStore;
     return (
