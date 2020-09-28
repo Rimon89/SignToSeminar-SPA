@@ -1,17 +1,15 @@
-import React from 'react'
-import { ISeminar } from '../../../app/models/seminar'
+import React, { useContext } from 'react'
 import { Card, Button } from 'react-bootstrap';
 import moment from 'moment';
+import { observer } from 'mobx-react-lite';
+import SeminarStore from '../../../app/stores/seminarStore';
 
-interface IProps {
-    seminars: ISeminar[];
-    selectSeminar: (id: string) => void;
-}
-
-const SeminarList: React.FC<IProps> = ({ seminars, selectSeminar }) => {
+const SeminarList: React.FC = () => {
+    const seminarStore = useContext(SeminarStore);
+    const {seminarsByDate, selectSeminar} = seminarStore
     return (
         <div>
-            {seminars.map(seminar => (
+            {seminarsByDate.map(seminar => (
                 <Card key={seminar.id}>
                     <Card.Header>{seminar.category}</Card.Header>
                     <Card.Body>
@@ -36,4 +34,4 @@ const SeminarList: React.FC<IProps> = ({ seminars, selectSeminar }) => {
     )
 }
 
-export default SeminarList
+export default observer(SeminarList);

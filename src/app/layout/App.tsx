@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { ISeminar } from '../models/seminar';
 import NavBar from '../../features/nav/NavBar';
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -6,8 +6,12 @@ import 'semantic-ui-css/semantic.min.css'
 import { Container } from 'semantic-ui-react';
 import SeminarDashboard from '../../features/seminars/dashboard/SeminarDashboard';
 import agent from '../api/agent';
+import SeminarStore from '../stores/seminarStore'
+import { observer } from 'mobx-react-lite';
 
 const App = () => {
+  const seminarStore = useContext(SeminarStore)
+
   const [seminars, setSeminars] = useState<ISeminar[]>([])   //We define a constant and pass in an array with two elements. "activities = the state". "setActivities = a function to set the state". "useState = we give this a intial state wich is an empty array"
   const [selectedSeminar, setSelectedSeminar] = useState<ISeminar | null>(null) //Initial state 'selectedSeminar' can be of type Seminar or null.
   const [attendMode, setAttendMode] = useState(false);
@@ -17,25 +21,20 @@ const App = () => {
   }
 
   useEffect(() => {
-    agent.Seminars.list()
-      .then((response) => {
-        setSeminars(response)
-      });
-  }, []);   //[] = So useEffect doesnt get in to a loop.
+    seminarStore.loadSeminars();
+  }, [seminarStore]);   //[] = So useEffect doesnt get in to a loop.
 
   return (
     <div>
       <NavBar />
       <Container style={{marginTop: '7em'}} >
         <SeminarDashboard 
-          seminars={seminars}
+          seminars={seminarStore.seminars}
           selectSeminar={handleSelectedSeminar}
-          selectedSeminar={selectedSeminar}  
-          attendMode={attendMode}
           setAttendMode={setAttendMode} />  {/* passing seminars props down to SeminarDashboard component */}
       </Container>
     </div>
   );
 }
 
-export default App;
+export default observer(App);

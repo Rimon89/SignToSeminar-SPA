@@ -1,15 +1,12 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useContext, useState } from 'react'
 import { Button, Form, Segment } from 'semantic-ui-react'
-import agent from '../../../app/api/agent'
-import { ISeminar } from '../../../app/models/seminar'
 import { IUser } from '../../../app/models/user'
+import SeminarStore from '../../../app/stores/seminarStore';
 
-interface IProps {
-    setAttendMode: (attendMode: boolean) => void;
-    seminar: ISeminar;
-}
+const SeminarForm:React.FC = () => {
 
-const SeminarForm:React.FC<IProps> = ({setAttendMode, seminar}) => {
+    const seminarStore = useContext(SeminarStore);
+    const {selectedSeminar} = seminarStore;
 
     const initializeForm = () => {
         return {
@@ -26,11 +23,9 @@ const SeminarForm:React.FC<IProps> = ({setAttendMode, seminar}) => {
     const handleSubmit = () => {
         let newUser = {
             ...user,
-            seminarId: seminar.id
+            seminarId: selectedSeminar!.id
           };
-        agent.Users.create(newUser).then(() => {
-            setAttendMode(false);
-        });
+          seminarStore.createUser(newUser);
     }
 
     const [user, setUser] = useState<IUser>(initializeForm);
@@ -50,7 +45,7 @@ const SeminarForm:React.FC<IProps> = ({setAttendMode, seminar}) => {
                 <Form.Input onChange={handleInput} name='city' placeholder='City' value={user.city} />
                 <Form.Input onChange={handleInput} name='address' placeholder='Address' value={user.address} />
                 <Button floated='right' type='submit' color='blue' content='Submit' />
-                <Button onClick={() => setAttendMode(false)} floated='right' type='button' content='Cancel' />
+                <Button onClick={seminarStore.closeUserForm} floated='right' type='button' content='Cancel' />
             </Form>
         </Segment>
     )

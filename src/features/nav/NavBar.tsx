@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react-lite';
 import React from 'react'
 import { Navbar, Nav } from 'react-bootstrap';
 
@@ -14,4 +15,4 @@ const navBar = () => {
     )
 }
 
-export default navBar
+export default observer(navBar);

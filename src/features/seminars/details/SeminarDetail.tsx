@@ -1,22 +1,20 @@
-import React from 'react'
+import { observer } from 'mobx-react-lite';
+import React, { useContext } from 'react'
 import { Card, Button } from 'react-bootstrap';
-import { ISeminar } from '../../../app/models/seminar'
+import SeminarStore from '../../../app/stores/seminarStore';
 
-interface IProps {
-  seminar: ISeminar;
-  setAttendMode: (attendMode: boolean) => void;
-}
-
-const SeminarDetail: React.FC<IProps> = ({ seminar, setAttendMode }) => {
+const SeminarDetail: React.FC = () => {
+  const seminarStore = useContext(SeminarStore);
+  const {selectedSeminar: seminar} = seminarStore;
   return (
     <Card>
-      <Card.Img variant="top" src={`/assets/categoryImages/${seminar.category.toLowerCase()}.jpg`} />
+      <Card.Img variant="top" src={`/assets/categoryImages/${seminar!.category.toLowerCase()}.jpg`} />
       <Card.Body>
-        <Card.Title>{seminar.name}</Card.Title>
+        <Card.Title>{seminar!.name}</Card.Title>
         <Card.Text>
-          {seminar.description}
+          {seminar!.description}
         </Card.Text>
-        <Button onClick={() => setAttendMode(true)} variant="outline-primary" block>
+        <Button onClick={seminarStore.openUserForm} variant="outline-primary" block>
           Attend seminar
         </Button>
       </Card.Body>
@@ -24,4 +22,4 @@ const SeminarDetail: React.FC<IProps> = ({ seminar, setAttendMode }) => {
   )
 }
 
-export default SeminarDetail
+export default observer(SeminarDetail);
