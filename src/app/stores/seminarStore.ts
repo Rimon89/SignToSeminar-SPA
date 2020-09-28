@@ -1,10 +1,12 @@
-import { observable, action, computed } from "mobx";
+import { observable, action, computed, configure, runInAction } from "mobx";
 import { createContext } from "react";
 import agent from "../api/agent";
 import { ISeminar } from "../models/seminar";
 import { IUser } from "../models/user";
 
-class SeminarStore {
+configure({enforceActions: 'always'});
+
+export class SeminarStore {
     @observable seminarRegistry = new Map();
     @observable seminars: ISeminar[] = [];
     @observable selectedSeminar: ISeminar | undefined;
@@ -15,11 +17,12 @@ class SeminarStore {
     }
 
     @action loadSeminars = async () => {
-
         try{
             const seminars = await agent.Seminars.list();
-            seminars.forEach((seminar) => {
-                this.seminarRegistry.set(seminar.id ,seminar);
+            runInAction('loading seminars', () => {
+                seminars.forEach((seminar) => {
+                    this.seminarRegistry.set(seminar.id ,seminar);
+                })
             })
         } catch (error) {
             console.log(error);
@@ -29,9 +32,13 @@ class SeminarStore {
     @action createUser = async (user: IUser) => {
         try {
             await agent.Users.create(user);
-            this.attendMode = false;
+            runInAction('creating attendee', () => {
+                this.attendMode = false;
+            })
         } catch (error) {
-            this.attendMode = false;
+            runInAction('create attendee error', () => {
+                this.attendMode = false;
+            })
             console.log(error);
         }
     }
