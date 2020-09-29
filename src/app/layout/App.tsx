@@ -6,6 +6,9 @@ import { Container } from 'semantic-ui-react';
 import SeminarDashboard from '../../features/seminars/dashboard/SeminarDashboard';
 import SeminarStore from '../stores/seminarStore'
 import { observer } from 'mobx-react-lite';
+import { Route } from 'react-router-dom';
+import HomePage from '../../features/home/HomePage';
+import ContactPage from '../../features/contact/ContactPage';
 
 const App = () => {
   const seminarStore = useContext(SeminarStore)
@@ -18,7 +21,9 @@ const App = () => {
     <div>
       <NavBar />
       <Container style={{marginTop: '7em'}} >
-        <SeminarDashboard  />  {/* passing seminars props down to SeminarDashboard component */}
+      <Route exact path='/' component={HomePage} />
+      <Route path='/seminars' component={SeminarDashboard} />
+      <Route path='/contact' component={ContactPage} />
       </Container>
     </div>
   );
