@@ -9,7 +9,7 @@ configure({enforceActions: 'always'});
 export class SeminarStore {
     @observable seminarRegistry = new Map();
     @observable seminars: ISeminar[] = [];
-    @observable selectedSeminar: ISeminar | undefined;
+    @observable seminar: ISeminar | null = null;
     @observable attendMode = false;
 
     @computed get seminarsByDate() {
@@ -52,7 +52,7 @@ export class SeminarStore {
     }
 
     @action selectSeminar = (id: string) => {
-        this.selectedSeminar = this.seminarRegistry.get(id);
+        this.seminar = this.seminarRegistry.get(id);
         this.attendMode = false;
     }
 }

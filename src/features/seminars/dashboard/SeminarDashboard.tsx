@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import SeminarDetail from '../details/SeminarDetail'
 import SeminarForm from '../form/SeminarForm'
 import SeminarList from './SeminarList'
@@ -8,7 +8,12 @@ import SeminarStore from '../../../app/stores/seminarStore';
 
 const SeminarDashboard: React.FC = () => {
     const seminarStore = useContext(SeminarStore);
-    const {attendMode, selectedSeminar} = seminarStore;
+    const {attendMode, seminar} = seminarStore;
+
+    useEffect(() => {
+      seminarStore.loadSeminars();
+    }, [seminarStore]);   //[] = So useEffect doesnt get in to a loop.
+    
     return (
         <Container>
         <Row>
@@ -16,7 +21,7 @@ const SeminarDashboard: React.FC = () => {
              <SeminarList/>
           </Col>
           <Col md={4}>
-          {selectedSeminar && <SeminarDetail />} {/** what is to the right of && will only be executed if it's not equal to null*/}
+          {seminar && <SeminarDetail />} {/** what is to the right of && will only be executed if it's not equal to null*/}
                 {attendMode && <SeminarForm />}
           </Col>
         </Row>

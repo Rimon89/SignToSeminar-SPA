@@ -6,29 +6,25 @@ import SeminarStore from '../../../app/stores/seminarStore';
 const SeminarForm:React.FC = () => {
 
     const seminarStore = useContext(SeminarStore);
-    const {selectedSeminar, closeUserForm} = seminarStore;
-
-    const initializeForm = () => {
-        return {
-            firstName: '',
-            lastName: '',
-            email: '',
-            phoneNumber: '',
-            city: '',
-            address: '',
-            seminarId: ''
-        }
-    }
+    const {seminar, closeUserForm} = seminarStore;
 
     const handleSubmit = () => {
         let newUser = {
             ...user,
-            seminarId: selectedSeminar!.id
+            seminarId: seminar!.id
           };
           seminarStore.createUser(newUser);
     }
 
-    const [user, setUser] = useState<IUser>(initializeForm);
+    const [user, setUser] = useState<IUser>({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNumber: '',
+        city: '',
+        address: '',
+        seminarId: ''
+    });
 
     const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
         const {name, value} = event.target;

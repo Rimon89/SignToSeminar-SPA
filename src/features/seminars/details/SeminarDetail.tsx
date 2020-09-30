@@ -5,7 +5,7 @@ import SeminarStore from '../../../app/stores/seminarStore';
 
 const SeminarDetail: React.FC = () => {
   const seminarStore = useContext(SeminarStore);
-  const {selectedSeminar: seminar, openUserForm} = seminarStore;
+  const {seminar, openUserForm} = seminarStore;
   return (
     <Card>
       <Card.Img variant="top" src={`/assets/categoryImages/${seminar!.category.toLowerCase()}.jpg`} />
