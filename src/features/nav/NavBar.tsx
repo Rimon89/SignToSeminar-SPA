@@ -1,18 +1,21 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react'
-import { Navbar, Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+import { Menu, Container } from 'semantic-ui-react';
 
 const navBar = () => {
-    return (
-        <Navbar bg="primary" variant="dark" fixed="top">
-        <Navbar.Brand as={NavLink} to='/' >JoyEducation</Navbar.Brand>
-        <Nav className="mr-auto">
-          <Nav.Link as={NavLink} to='/seminars' >Seminars</Nav.Link>
-          <Nav.Link as={NavLink} to='/contact' >Contact</Nav.Link>
-        </Nav>
-      </Navbar>
-    )
+  return (
+    <Menu fixed='top' inverted>
+      <Container>
+        <Menu.Item header as={NavLink} exact to='/' >
+          JoyEducation
+            </Menu.Item>
+        <Menu.Item name='Seminars' as={NavLink} to='/seminars' />
+        <Menu.Item name='Contact' as={NavLink} to='/contact'>
+        </Menu.Item>
+      </Container>
+    </Menu>
+  )
 }
 
 export default observer(navBar);

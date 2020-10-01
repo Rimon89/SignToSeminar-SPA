@@ -7,4 +7,5 @@ export interface ISeminar {
     city: string;
     dateTime: string;
     availableSeats: number;
+    hostedBy: string;
 }

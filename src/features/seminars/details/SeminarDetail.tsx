@@ -10,7 +10,7 @@ const SeminarDetail: React.FC = () => {
     <Card>
       <Card.Img variant="top" src={`/assets/categoryImages/${seminar!.category.toLowerCase()}.jpg`} />
       <Card.Body>
-        <Card.Title>{seminar!.name}</Card.Title>
+        <Card.Title><strong>{seminar!.name}</strong></Card.Title>
         <Card.Text>
           {seminar!.description}
         </Card.Text>
