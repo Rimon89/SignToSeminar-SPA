@@ -1,0 +1,21 @@
+.homeSegment {
+    display: flex;
+    align-items: center;
+    background-image: url("https://wallpaperaccess.com/full/1236461.jpg") !important;
+    height: 100vh;
+  }
+  
+  .homeSegment .ui.menu .ui.button,
+  .ui.menu a.ui.inverted.button {
+    margin-left: 0.5em;
+  }
+  
+  .homeSegment h1.ui.header {
+    font-size: 4em;
+    font-weight: normal;
+  }
+  
+  .homeSegment h2 {
+    font-size: 1.7em;
+    font-weight: normal;
+  }

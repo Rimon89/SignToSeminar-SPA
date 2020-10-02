@@ -1,0 +1,36 @@
+.contact {
+    margin-top: 40px;
+    }
+    
+    .head {
+        background-color: rgb(36, 138, 255);
+        border-radius: 5px;
+        margin-top: -40px;
+        -webkit-box-shadow: 0 8px 6px -6px rgb(44, 106, 238);
+        -moz-box-shadow: 0 8px 6px -6px rgb(44, 106, 238);
+             box-shadow: 0 8px 6px -6px rgb(44, 106, 238);
+    }
+    
+    .effect-1 {
+        border: 0;
+        outline: none;
+        width: 100%;
+        padding: 7px 0;
+        border-bottom: 1px solid #ccc;
+    }
+    
+    .effect-1 ~ .focus-border{     /*It is general sibling combinator and similar to Adjacent sibling combinator. the difference is that the second selector does NOT have to immediately follow the first one means It will select all elements that is preceded by the former selector.*/
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background-color: rgb(36, 138, 255);
+        transition: 0.4s;
+    }
+    
+    .effect-1:focus ~ .focus-border{
+        width: 100%;
+        transition: 0.4s;
+        left: 0;
+    }
