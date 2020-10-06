@@ -1,5 +1,6 @@
 import { observable, action, computed, configure, runInAction } from "mobx";
 import { createContext } from "react";
+import { toast } from "react-toastify";
 import agent from "../api/agent";
 import { ISeminar } from "../models/seminar";
 import { IUser } from "../models/user";
@@ -34,10 +35,11 @@ export class SeminarStore {
             await agent.Users.create(user);
             runInAction('creating attendee', () => {
                 this.attendMode = false;
+                toast.success('Thank you for choosing JoyEducation.')
             })
         } catch (error) {
             runInAction('create attendee error', () => {
-                this.attendMode = false;
+                this.attendMode = true;
             })
             console.log(error);
         }

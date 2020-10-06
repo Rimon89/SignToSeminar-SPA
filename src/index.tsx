@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.min.css';
 import './app/layout/style.css';
 import App from './app/layout/App';
 import * as serviceWorker from './serviceWorker';

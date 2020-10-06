@@ -6,7 +6,7 @@ import { Navbar, Nav, Form, Button, FormControl } from 'react-bootstrap';
 const navBar = () => {
   return (
     <Navbar bg="primary" variant="dark">
-      <Navbar.Brand as={NavLink} exact to='/'>Navbar</Navbar.Brand>
+      <Navbar.Brand as={NavLink} exact to='/'>JoyEducation</Navbar.Brand>
       <Nav className="mr-auto">
         <Nav.Link as={NavLink} exact to='/seminars'>Seminars</Nav.Link>
         <Nav.Link as={NavLink} exact to='/contact'>Contact</Nav.Link>

@@ -8,10 +8,12 @@ import { observer } from 'mobx-react-lite';
 import { Route } from 'react-router-dom';
 import HomePage from '../../features/home/HomePage';
 import ContactPage from '../../features/contact/ContactPage';
+import { ToastContainer } from 'react-toastify';
 
 const App = () => {
   return (
-    <div>
+    <React.Fragment>
+      <ToastContainer position='bottom-right' />
       <Route exact path='/' component={HomePage} />
       <Route path={'/(.+)'} render={() => (
         <div>
@@ -22,7 +24,7 @@ const App = () => {
           </Container>
         </div>
       )} />
-    </div>
+    </React.Fragment>
   );
 }
 
