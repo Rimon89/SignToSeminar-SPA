@@ -10,7 +10,7 @@ const responseBody = (response: AxiosResponse) => response.data;
 axios.interceptors.response.use(undefined, error => {
     const {status, config, data} = error.response
     
-    if(status === 400 && config.method === 'post' && data !== null){
+    if(status === 400 && config.method === 'post' && data === 'You have already signed up for this seminar'){
         toast.error(data)
     }
 })

@@ -46,7 +46,7 @@ export class SeminarStore {
       runInAction('create attendee error', () => {
         this.attendMode = true;
       });
-      console.log(error);
+      console.log(error.response);
     }
   };
 

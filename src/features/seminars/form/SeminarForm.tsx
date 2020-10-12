@@ -2,21 +2,45 @@ import React, { ChangeEvent, useContext, useState } from 'react'
 import { Button, Form, Segment } from 'semantic-ui-react'
 import { IUser } from '../../../app/models/user'
 import SeminarStore from '../../../app/stores/seminarStore';
+import { Form as FinalForm, Field } from 'react-final-form';
+import TextInput from '../../../app/common/form/TextInput';
+import {combineValidators, composeValidators, createValidator, isRequired} from 'revalidate'
 
-const SeminarForm:React.FC = () => {
+const SeminarForm: React.FC = () => {
 
     const seminarStore = useContext(SeminarStore);
-    const {seminar, closeUserForm} = seminarStore;
+    const { seminar, closeUserForm } = seminarStore;
 
-    const handleSubmit = () => {
+    const isValidEmail = createValidator(
+        message => value => {
+          if (value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+            return message
+          }
+        },
+        'Invalid email address'
+      )
+
+    const validate = combineValidators({
+        firstName: isRequired('firstName'),
+        lastName: isRequired('lastName'),
+        email: composeValidators(
+            isRequired('email'),
+            isValidEmail
+        )(),
+        phoneNumber: isRequired('phoneNumber'),
+        city: isRequired('city'),
+        address: isRequired('address'),
+    })
+
+    /*const handleSubmit = () => {
         let newUser = {
             ...user,
             seminarId: seminar!.id
-          };
-          seminarStore.createUser(newUser);
-    }
+        };
+        seminarStore.createUser(newUser);
+    }*/
 
-    const [user, setUser] = useState<IUser>({
+    const user = {
         firstName: '',
         lastName: '',
         email: '',
@@ -24,25 +48,38 @@ const SeminarForm:React.FC = () => {
         city: '',
         address: '',
         seminarId: ''
-    });
-
-    const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = event.target;
-        setUser({...user, [name]: value})
     }
+
+    const handleFinalFormSubmit = (values: any) => {
+        const {...user} = values
+
+        let newUser = {
+            ...user,
+            seminarId: seminar!.id
+        };
+        seminarStore.createUser(newUser);
+    }
+
+    /*const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
+        setUser({ ...user, [name]: value })
+    }*/
 
     return (
         <Segment clearing>
-            <Form onSubmit={handleSubmit} >
-                <Form.Input onChange={handleInput} name='firstName' placeholder='Firstname' value={user.firstName} />
-                <Form.Input onChange={handleInput} name='lastName' placeholder='Lastname' value={user.lastName} />
-                <Form.Input onChange={handleInput} name='email' type='email' placeholder='Email' value={user.email} />
-                <Form.Input onChange={handleInput} name='phoneNumber' placeholder='Phonenumber' value={user.phoneNumber} />
-                <Form.Input onChange={handleInput} name='city' placeholder='City' value={user.city} />
-                <Form.Input onChange={handleInput} name='address' placeholder='Address' value={user.address} />
-                <Button floated='right' type='submit' color='blue' content='Submit' />
-                <Button onClick={closeUserForm} floated='right' type='button' content='Cancel' />
-            </Form>
+            <FinalForm validate={validate} onSubmit={handleFinalFormSubmit} render={({ handleSubmit, invalid, pristine }) => (
+                <Form onSubmit={handleSubmit} >
+                    <Field name='firstName' placeholder='Firstname' value={user.firstName} component={TextInput} />
+                    <Field component={TextInput} name='lastName' placeholder='Lastname' value={user.lastName} />
+                    <Field component={TextInput} name='email' type='email' placeholder='Email' value={user.email} />
+                    <Field component={TextInput} name='phoneNumber' placeholder='Phonenumber' value={user.phoneNumber} />
+                    <Field component={TextInput} name='city' placeholder='City' value={user.city} />
+                    <Field component={TextInput} name='address' placeholder='Address' value={user.address} />
+                    <Button disabled={invalid || pristine} floated='right' type='submit' color='blue' content='Submit' />
+                    <Button onClick={closeUserForm} floated='right' type='button' content='Cancel' />
+                </Form>
+            )}>
+            </FinalForm>
         </Segment>
     )
 }
