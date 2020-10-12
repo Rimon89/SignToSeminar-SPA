@@ -35,6 +35,23 @@ export class SeminarStore {
     }
   };
 
+  @action loadSeminar = async (id: string) => {
+    this.loadingInitial = true;
+    this.closeUserForm();
+    try {
+      let seminar = await agent.Seminars.details(id)
+      runInAction('getting seminar', () => {
+        this.seminar = seminar;
+        this.loadingInitial = false;
+      })
+    } catch (error) {
+      runInAction('get seminar error', () => {
+        this.loadingInitial = false;
+        console.log(error)
+      })
+    }
+  } 
+
   @action createUser = async (user: IUser) => {
     try {
       await agent.Users.create(user);

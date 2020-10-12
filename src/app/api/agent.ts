@@ -23,7 +23,8 @@ const requests = {
 }
 
 const Seminars = {
-    list: (): Promise<ISeminar[]> => requests.get('/seminars')
+    list: (): Promise<ISeminar[]> => requests.get('/seminars'),
+    details: (id: string) => requests.get(`/seminars/${id}`)
 }
 
 const Users = {

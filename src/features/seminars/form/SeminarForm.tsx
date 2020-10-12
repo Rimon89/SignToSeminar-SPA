@@ -1,6 +1,5 @@
-import React, { ChangeEvent, useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { Button, Form, Segment } from 'semantic-ui-react'
-import { IUser } from '../../../app/models/user'
 import SeminarStore from '../../../app/stores/seminarStore';
 import { Form as FinalForm, Field } from 'react-final-form';
 import TextInput from '../../../app/common/form/TextInput';
@@ -32,14 +31,6 @@ const SeminarForm: React.FC = () => {
         address: isRequired('address'),
     })
 
-    /*const handleSubmit = () => {
-        let newUser = {
-            ...user,
-            seminarId: seminar!.id
-        };
-        seminarStore.createUser(newUser);
-    }*/
-
     const user = {
         firstName: '',
         lastName: '',
@@ -59,11 +50,6 @@ const SeminarForm: React.FC = () => {
         };
         seminarStore.createUser(newUser);
     }
-
-    /*const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target;
-        setUser({ ...user, [name]: value })
-    }*/
 
     return (
         <Segment clearing>
