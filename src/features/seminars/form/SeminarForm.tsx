@@ -20,15 +20,15 @@ const SeminarForm: React.FC = () => {
       )
 
     const validate = combineValidators({
-        firstName: isRequired('firstName'),
-        lastName: isRequired('lastName'),
+        firstName: isRequired('Firstname'),
+        lastName: isRequired('Lastname'),
         email: composeValidators(
-            isRequired('email'),
+            isRequired('Email'),
             isValidEmail
         )(),
-        phoneNumber: isRequired('phoneNumber'),
-        city: isRequired('city'),
-        address: isRequired('address'),
+        phoneNumber: isRequired('Phonenumber'),
+        city: isRequired('City'),
+        address: isRequired('Address'),
     })
 
     const user = {

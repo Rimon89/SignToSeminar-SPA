@@ -35,7 +35,7 @@ if(!seminar){
     <GridColumn width={6}>
         {attendMode && <SeminarForm />}
     </GridColumn>
-</Grid>
+  </Grid>
   )
 }
 
