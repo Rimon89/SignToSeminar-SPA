@@ -4,6 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { observer } from 'mobx-react-lite'
 import SeminarStore from '../../../app/stores/seminarStore';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
+import SeminarFilter from './SeminarFilter';
 
 const SeminarDashboard: React.FC = () => {
     const seminarStore = useContext(SeminarStore);
@@ -21,7 +22,7 @@ const SeminarDashboard: React.FC = () => {
              <SeminarList/>
           </Col>
           <Col md={4}>
-            SeminarFilter
+            <SeminarFilter/>
           </Col>
         </Row>
       </Container>
