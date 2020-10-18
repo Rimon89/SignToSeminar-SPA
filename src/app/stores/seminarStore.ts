@@ -12,13 +12,16 @@ export class SeminarStore {
   @observable seminar: ISeminar | null = null;
   @observable attendMode = false;
   @observable loadingInitial = false;
-  @observable searchByDate: Date | Date[] = new Date()
+  @observable searchByDate: Date | Date[] | string = 'all'
 
-  @action setSearchByDate = (value: Date | Date[]) => {
+  @action setSearchByDate = (value: Date | Date[] | string) => {
     this.searchByDate = value;
   }
 
   @computed get seminarsByDate() {
+    if(this.searchByDate === 'all') {
+      return Array.from(this.seminarRegistry.values())
+    }
     const formatDate = this.searchByDate.toLocaleString([], {year: 'numeric', month: 'numeric', day: 'numeric'})
     return Array.from(this.seminarRegistry.values()).filter(date => date.dateTime.split('T')[0] === formatDate);
   }
