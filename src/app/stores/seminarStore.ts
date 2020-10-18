@@ -9,15 +9,18 @@ configure({ enforceActions: 'always' });
 
 export class SeminarStore {
   @observable seminarRegistry = new Map();
-  @observable seminars: ISeminar[] = [];
   @observable seminar: ISeminar | null = null;
   @observable attendMode = false;
   @observable loadingInitial = false;
+  @observable searchByDate: Date | Date[] = new Date()
+
+  @action setSearchByDate = (value: Date | Date[]) => {
+    this.searchByDate = value;
+  }
 
   @computed get seminarsByDate() {
-    return Array.from(this.seminarRegistry.values()).sort(
-      (a, b) => Date.parse(a.dateTime) - Date.parse(b.dateTime)
-    );
+    const formatDate = this.searchByDate.toLocaleString([], {year: 'numeric', month: 'numeric', day: 'numeric'})
+    return Array.from(this.seminarRegistry.values()).filter(date => date.dateTime.split('T')[0] === formatDate);
   }
 
   @action loadSeminars = async () => {

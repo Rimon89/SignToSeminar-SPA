@@ -1,9 +1,13 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useContext } from 'react'
 import Calendar from 'react-calendar';
 import { Header } from 'semantic-ui-react';
 import 'react-calendar/dist/Calendar.css';
+import { observer } from 'mobx-react-lite';
+import SeminarStore from '../../../app/stores/seminarStore';
 
 const SeminarFilter = () => {
+    const seminarStore = useContext(SeminarStore);
+    const { searchByDate, setSearchByDate } = seminarStore
     return (
         <Fragment>
             <Header
@@ -14,10 +18,11 @@ const SeminarFilter = () => {
                 style={{ width: '100%', marginTop: 50 }}
             />
             <Calendar
-                onChange={date => console.log(date)}
+                value={searchByDate}
+                onChange={date => setSearchByDate(date)}
             />
         </Fragment>
     )
 }
 
-export default SeminarFilter
+export default observer(SeminarFilter)
