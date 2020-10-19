@@ -7,19 +7,19 @@ import SeminarStore from '../../../app/stores/seminarStore';
 
 const SeminarFilter = () => {
     const seminarStore = useContext(SeminarStore);
-    const { searchByDate, setSearchByDate } = seminarStore
+    const { searchByDateOrName, setSearchByDateOrName } = seminarStore
     return (
         <Fragment>
-                  <Menu vertical size={'large'} style={{ width: '100%', marginTop: 50 }}>
-        <Header icon={'filter'} attached color={'teal'} content={'Filters'} />
-        <Menu.Item
-          active={searchByDate === 'all'}
-          onClick={() => setSearchByDate('all')}
-          color={'blue'}
-          name={'all'}
-          content={'All Activities'}
-        />
-      </Menu>
+            <Menu vertical size={'large'} style={{ width: '100%', marginTop: 50 }}>
+                <Header icon={'filter'} attached color={'teal'} content={'Filters'} />
+                <Menu.Item
+                    active={searchByDateOrName === 'all'}
+                    onClick={() => setSearchByDateOrName('all')}
+                    color={'blue'}
+                    name={'all'}
+                    content={'All Activities'}
+                />
+            </Menu>
             <Header
                 icon={'calendar'}
                 attached
@@ -29,7 +29,7 @@ const SeminarFilter = () => {
             />
             <Calendar
                 value={new Date()}
-                onChange={date => setSearchByDate(date)}
+                onChange={date => setSearchByDateOrName(date)}
             />
         </Fragment>
     )

@@ -1,9 +1,13 @@
 import { observer } from 'mobx-react-lite';
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom';
 import { Navbar, Nav, Form, Button, FormControl } from 'react-bootstrap';
+import SeminarStore from '../../app/stores/seminarStore';
 
-const navBar = () => {
+const NavBar = () => {
+  const seminarStore = useContext(SeminarStore);
+  const { setSearchByDateOrName } = seminarStore
+  
   return (
     <Navbar bg="primary" variant="dark" fixed='top'>
       <Navbar.Brand as={NavLink} exact to='/'>JoyEducation</Navbar.Brand>
@@ -12,11 +16,11 @@ const navBar = () => {
         <Nav.Link as={NavLink} exact to='/contact'>Contact</Nav.Link>
       </Nav>
       <Form inline>
-        <FormControl type="text" placeholder="Seminar" className="mr-sm-2" />
+        <FormControl type="text" placeholder="Search seminar" className="mr-sm-2" onChange={e => setSearchByDateOrName(e.target.value.toLocaleLowerCase())} />
         <Button variant="outline-light">Search</Button>
       </Form>
     </Navbar>
   )
 }
 
-export default observer(navBar);
+export default observer(NavBar);

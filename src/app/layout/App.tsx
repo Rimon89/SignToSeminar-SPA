@@ -19,7 +19,7 @@ const App = () => {
       <Route path={'/(.+)'} render={() => (
         <div>
           <NavBar />
-          <Container style={{ marginTop: '7em' }} >
+          <Container style={{ margin: '7em 0 3em 0' }} >
             <Route exact path='/seminars' component={SeminarDashboard} />
             <Route path='/seminars/:id' component={SeminarDetail} />
             <Route path='/contact' component={ContactPage} />

@@ -12,18 +12,19 @@ export class SeminarStore {
   @observable seminar: ISeminar | null = null;
   @observable attendMode = false;
   @observable loadingInitial = false;
-  @observable searchByDate: Date | Date[] | string = 'all'
+  @observable searchByDateOrName: Date | Date[] | string = 'all'
 
-  @action setSearchByDate = (value: Date | Date[] | string) => {
-    this.searchByDate = value;
+  @action setSearchByDateOrName = (value: Date | Date[] | string) => {
+    this.searchByDateOrName = value;
   }
 
-  @computed get seminarsByDate() {
-    if(this.searchByDate === 'all') {
+  @computed get seminarsByDateOrName() {
+    if(this.searchByDateOrName === 'all') {
       return Array.from(this.seminarRegistry.values())
     }
-    const formatDate = this.searchByDate.toLocaleString([], {year: 'numeric', month: 'numeric', day: 'numeric'})
-    return Array.from(this.seminarRegistry.values()).filter(date => date.dateTime.split('T')[0] === formatDate);
+    const formatDate = this.searchByDateOrName.toLocaleString([], {year: 'numeric', month: 'numeric', day: 'numeric'})
+    return Array.from(this.seminarRegistry.values())
+          .filter(date => date.dateTime.split('T')[0] === formatDate || date.name.toLowerCase().includes(this.searchByDateOrName));
   }
 
   @action loadSeminars = async () => {
