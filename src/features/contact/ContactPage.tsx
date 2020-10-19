@@ -40,7 +40,7 @@ const ContactPage = () => {
                         <input
                           type="email"
                           className="effect-1"
-                          placeholder="Email Address"
+                          placeholder="Email"
                         />
                         <span className="focus-border"></span>
                       </div>
@@ -57,7 +57,7 @@ const ContactPage = () => {
                     </div>
                     <div className="form-row pt-4">
                       <button className="btn btn-primary btn1 btn-block">
-                        SEND MESSAGE
+                        SEND
                       </button>
                     </div>
                   </div>
