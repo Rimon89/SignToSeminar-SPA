@@ -13,11 +13,32 @@ const SeminarFilter = () => {
             <Menu vertical size={'large'} style={{ width: '100%', marginTop: 50 }}>
                 <Header icon={'filter'} attached color={'teal'} content={'Filters'} />
                 <Menu.Item
+                    active={searchByDateOrName === 'design'}
+                    onClick={() => setSearchByDateOrName('design')}
+                    color={'blue'}
+                    name={'design'}
+                    content={"Design"}
+                />
+                <Menu.Item
+                    active={searchByDateOrName === 'marketing'}
+                    onClick={() => setSearchByDateOrName('marketing')}
+                    color={'blue'}
+                    name={'marketing'}
+                    content={"Marketing"}
+                />
+                <Menu.Item
+                    active={searchByDateOrName === 'leadership'}
+                    onClick={() => setSearchByDateOrName('leadership')}
+                    color={'blue'}
+                    name={'leadership'}
+                    content={"Leadership"}
+                />
+                <Menu.Item
                     active={searchByDateOrName === 'all'}
                     onClick={() => setSearchByDateOrName('all')}
                     color={'blue'}
                     name={'all'}
-                    content={'All Activities'}
+                    content={'All Seminars'}
                 />
             </Menu>
             <Header

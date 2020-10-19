@@ -34,7 +34,7 @@ const SeminarDetailHeader: React.FC<{ seminar: ISeminar }> = ({ seminar }) => {
                                     content={seminar.name}
                                     style={{ color: 'white' }}
                                 />
-                                <p>{seminar.dateTime}</p>
+                                <p>Time:{" "} {seminar.dateTime.split('T')[1].substring(0, 5)}</p>
                                 <p>
                                     Hosted by <strong>{seminar.hostedBy}</strong>
                                 </p>

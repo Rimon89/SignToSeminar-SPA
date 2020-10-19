@@ -24,7 +24,9 @@ export class SeminarStore {
     }
     const formatDate = this.searchByDateOrName.toLocaleString([], {year: 'numeric', month: 'numeric', day: 'numeric'})
     return Array.from(this.seminarRegistry.values())
-          .filter(date => date.dateTime.split('T')[0] === formatDate || date.name.toLowerCase().includes(this.searchByDateOrName));
+          .filter(date => date.dateTime.split('T')[0] === formatDate
+           || date.name.toLowerCase().includes(this.searchByDateOrName)
+           || date.category.toLowerCase() === this.searchByDateOrName);
   }
 
   @action loadSeminars = async () => {

@@ -23,7 +23,7 @@ const SeminarDetailInfo:React.FC<{seminar: ISeminar}> = ({seminar}) => {
                         </Grid.Column>
                         <Grid.Column width={15}>
                             <span>
-                                {seminar.dateTime}
+                                {seminar.dateTime.split('T')[0]}
                             </span>
                         </Grid.Column>
                     </Grid>
