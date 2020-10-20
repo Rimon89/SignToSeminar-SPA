@@ -22,6 +22,8 @@ const SeminarListItem: React.FC<{ seminar: ISeminar }> = ({ seminar }) => {
             </Segment>
             <Segment >
                 <span>{seminar.description.length > 200 ? seminar.description.substring(0, 250) + "......." : seminar.description}</span>
+                <br/><br/>
+                <span>Available seats: {seminar.availableSeats}</span>
             </Segment>
             <Segment clearing>
                 <Icon name='clock' /> {seminar.dateTime.split('T')[1].substring(0, 5) + " "}
