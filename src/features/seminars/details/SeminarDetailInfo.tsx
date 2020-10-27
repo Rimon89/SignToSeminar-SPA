@@ -1,6 +1,7 @@
 import React from 'react'
 import { Segment, Grid, Icon } from 'semantic-ui-react'
 import { ISeminar } from '../../../app/models/seminar'
+import {format} from 'date-fns'
 
 const SeminarDetailInfo:React.FC<{seminar: ISeminar}> = ({seminar}) => {
     return (
@@ -23,7 +24,7 @@ const SeminarDetailInfo:React.FC<{seminar: ISeminar}> = ({seminar}) => {
                         </Grid.Column>
                         <Grid.Column width={15}>
                             <span>
-                                {seminar.dateTime.split('T')[0]}
+                                {format(Date.parse(seminar.dateTime), 'eeee do MMMM')}
                             </span>
                         </Grid.Column>
                     </Grid>

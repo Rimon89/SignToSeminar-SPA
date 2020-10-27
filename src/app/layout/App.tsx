@@ -10,10 +10,12 @@ import HomePage from '../../features/home/HomePage';
 import ContactPage from '../../features/contact/ContactPage';
 import { ToastContainer } from 'react-toastify';
 import SeminarDetail from '../../features/seminars/details/SeminarDetail';
+import ModalContainer from '../common/modal/ModalContainer';
 
 const App = () => {
   return (
     <React.Fragment>
+      <ModalContainer/>
       <ToastContainer position='bottom-right' />
       <Route exact path='/' component={HomePage} />
       <Route path={'/(.+)'} render={() => (

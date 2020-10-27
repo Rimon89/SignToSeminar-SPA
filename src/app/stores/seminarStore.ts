@@ -8,9 +8,9 @@ import { IUser } from '../models/user';
 configure({ enforceActions: 'always' });
 
 export class SeminarStore {
+
   @observable seminarRegistry = new Map();
   @observable seminar: ISeminar | null = null;
-  @observable attendMode = false;
   @observable loadingInitial = false;
   @observable searchByDateOrName: Date | Date[] | string = 'all'
 
@@ -20,10 +20,10 @@ export class SeminarStore {
 
   @computed get seminarsByDateOrName() {
     if(this.searchByDateOrName === 'all') {
-      return Array.from(this.seminarRegistry.values())
+      return Array.from(this.seminarRegistry.values()).filter(seminar => seminar.availableSeats > 0)
     }
     const formatDate = this.searchByDateOrName.toLocaleString([], {year: 'numeric', month: 'numeric', day: 'numeric'})
-    return Array.from(this.seminarRegistry.values())
+    return Array.from(this.seminarRegistry.values()).filter(seminar => seminar.availableSeats > 0)
           .filter(date => date.dateTime.split('T')[0] === formatDate
            || date.name.toLowerCase().includes(this.searchByDateOrName)
            || date.category.toLowerCase() === this.searchByDateOrName);
@@ -46,7 +46,6 @@ export class SeminarStore {
 
   @action loadSeminar = async (id: string) => {
     this.loadingInitial = true;
-    this.closeUserForm();
     try {
       let seminar = await agent.Seminars.details(id)
       runInAction('getting seminar', () => {
@@ -65,28 +64,15 @@ export class SeminarStore {
     try {
       await agent.Users.create(user);
       runInAction('creating attendee', () => {
-        this.attendMode = false;
         toast.success('Thank you for choosing JoyEducation.');
       });
     } catch (error) {
-      runInAction('create attendee error', () => {
-        this.attendMode = true;
-      });
       console.log(error.response);
     }
   };
 
-  @action openUserForm = async () => {
-    this.attendMode = true;
-  };
-
-  @action closeUserForm = async () => {
-    this.attendMode = false;
-  };
-
   @action selectSeminar = (id: string) => {
     this.seminar = this.seminarRegistry.get(id);
-    this.attendMode = false;
   };
 }
 

@@ -3,7 +3,8 @@ import React, { useContext } from 'react'
 import { Segment, Item, Header, Image } from 'semantic-ui-react'
 import { Button } from 'react-bootstrap';
 import { ISeminar } from '../../../app/models/seminar';
-import SeminarStore from '../../../app/stores/seminarStore';
+import ModalStore from '../../../app/stores/modalStore';
+import SeminarForm from '../form/SeminarForm';
 
 const seminarImageStyle = {
     filter: 'brightness(30%)'
@@ -19,7 +20,7 @@ const seminarImageTextStyle = {
 };
 
 const SeminarDetailHeader: React.FC<{ seminar: ISeminar }> = ({ seminar }) => {
-  const seminarStore = useContext(SeminarStore);
+  const modalStore = useContext(ModalStore)
 
     return (
         <Segment.Group>
@@ -44,7 +45,7 @@ const SeminarDetailHeader: React.FC<{ seminar: ISeminar }> = ({ seminar }) => {
                 </Segment>
             </Segment>
             <Segment clearing attached='bottom'>
-                <Button onClick={seminarStore.openUserForm} variant="outline-primary" block>
+                <Button onClick={() => modalStore.openModal(<SeminarForm/>)} variant="outline-primary" block>
                     Attend seminar
                 </Button>
             </Segment>

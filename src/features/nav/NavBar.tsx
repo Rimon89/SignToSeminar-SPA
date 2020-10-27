@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom';
-import { Navbar, Nav, Form, Button, FormControl } from 'react-bootstrap';
+import { Navbar, Nav, Form, FormControl } from 'react-bootstrap';
 import SeminarStore from '../../app/stores/seminarStore';
 
 const NavBar = () => {
@@ -17,7 +17,6 @@ const NavBar = () => {
       </Nav>
       <Form inline>
         <FormControl type="text" placeholder="Search seminar" className="mr-sm-2" onChange={e => setSearchByDateOrName(e.target.value.toLocaleLowerCase())} />
-        <Button variant="outline-light">Search</Button>
       </Form>
     </Navbar>
   )
