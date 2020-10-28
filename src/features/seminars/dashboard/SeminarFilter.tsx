@@ -34,8 +34,8 @@ const SeminarFilter = () => {
                     content={"Leadership"}
                 />
                 <Menu.Item
-                    active={searchByDateOrName === 'all'}
-                    onClick={() => setSearchByDateOrName('all')}
+                    active={searchByDateOrName === ''}
+                    onClick={() => setSearchByDateOrName('')}
                     color={'blue'}
                     name={'all'}
                     content={'All Seminars'}

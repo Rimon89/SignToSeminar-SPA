@@ -19,7 +19,7 @@ const SeminarList: React.FC = () => {
                         <SeminarListItem key={seminar.id} seminar={seminar} />
                     </Item.Group>
                 </Fragment>
-            )) : <h2 style={{ textAlign: 'center', marginTop: 100 }}>Not Found {':('}</h2>}
+            )) : <h2 style={{ textAlign: 'center', marginTop: 100 }}>No Seminars Found {':('}</h2>}
         </Fragment>
     )
 }

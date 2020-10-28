@@ -9,14 +9,14 @@ export class SeminarStore {
   @observable seminarRegistry = new Map();
   @observable seminar: ISeminar | null = null;
   @observable loadingInitial = false;
-  @observable searchByDateOrName: Date | Date[] | string = 'all';
+  @observable searchByDateOrName: Date | Date[] | string = '';
 
   @action setSearchByDateOrName = (value: Date | Date[] | string) => {
     this.searchByDateOrName = value;
   };
 
   @computed get seminarsByDateOrName() {
-    if (this.searchByDateOrName === 'all') {
+    if (this.searchByDateOrName === '') {
       return Array.from(this.seminarRegistry.values()).filter(
         (seminar) => seminar.availableSeats > 0
       );
